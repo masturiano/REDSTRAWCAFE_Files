@@ -1,0 +1,17 @@
+SELECT     
+	TOP 100 PERCENT
+	d.RECEIPT_NO, 
+	SUBSTRING(d.RECEIPT_NO, 1, 3) AS store, 
+	SUBSTRING(d.RECEIPT_NO, 4, 3) AS Reg, 
+  SUBSTRING(d.RECEIPT_NO, 7, 5) AS trx, 
+	SUBSTRING(d.RECEIPT_NO, 12, 6) AS TrxDate
+FROM            
+	dbo.data8vscrm_view_crm c 
+	RIGHT OUTER JOIN dbo.data8vscrm_view_data_eight d ON c.RECEIPT_NO = d.RECEIPT_NO
+WHERE        
+	c.RECEIPT_NO IS NULL
+ORDER BY 
+	SUBSTRING(d.RECEIPT_NO, 1, 3),
+	SUBSTRING(d.RECEIPT_NO, 12, 6),
+	SUBSTRING(d.RECEIPT_NO, 4, 3),
+	SUBSTRING(d.RECEIPT_NO, 7, 5)

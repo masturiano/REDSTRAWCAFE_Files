@@ -1,0 +1,47 @@
+create table tbl_items
+(
+item_id int not null auto_increment,
+group_code int(11) not null,
+description varchar(255),
+packaging varchar(255),
+unit_price decimal(38,2),
+rel_price decimal(38,2),
+fran_price decimal(38,2),
+no_of_items int(100),
+lower_limit int(100),
+date_enter datetime,
+date_update datetime,
+primary key(item_id)
+)
+
+insert into tbl_items
+(group_code,description,packaging,unit_price,rel_price,fran_price,no_of_items,lower_limit,date_enter,date_update)
+values
+(1,'POWDER BASE','25kg/sack','2500.00','2800.00','3000.00',100,10,'2016-06-26',NULL),
+(1,'CHOCO SYRUP','5kg/gal','606.00','679.00','727.00',100,10,'2016-06-26',NULL),
+(1,'CARAMEL SYRUP','5kg/gal','390.00','450.00','468.00',100,10,'2016-06-26',NULL),
+(2,'SHORT (8oz)',NULL,'310.00','350.00','403.00',100,10,'2016-06-26',NULL),
+(2,'TALL (12oz)','100pcs','310.00','350.00','403.00',100,10,'2016-06-26',NULL),
+(2,'GRANDE (16oz)','100pcs','340.00','400.00','455.00',100,10,'2016-06-26',NULL),
+(3,'JTC HEAVY DUTY BLENDER','1pc','11500.00','13800.00','13800.00',100,10,'2016-06-26',NULL),
+(3,'COFFEE MAKER (Imarflex)','1pc','1500.00','1800.00','1800.00',100,10,'2016-06-26',NULL),
+(3,'COFFEE MAKER (Kyowa)','1pc','800.00','960.00','960.00',100,10,'2016-06-26',NULL)
+
+
+
+create table tbl_item_group
+(
+group_code int(11) not null,
+group_name varchar(100),
+primary key(group_code)
+)
+
+
+insert into tbl_item_group
+(group_code,group_name)
+values
+(1,'Ingredients'),
+(2,'Non-food'),
+(3,'Equipments')
+
+select * from tbl_item_group

@@ -1,0 +1,11 @@
+SELECT ('RECEIPT_NO'+','+'STORE'+','+'REG'+','+'TRANSACTION'+','+'TRANSACTION_DATE') as result
+UNION ALL
+SELECT 
+	TOP 100 PERCENT  CAST(
+	'"# '+isnull(cast(RECEIPT_NO as varchar(MAX)),'')+'",'+
+	'"'+isnull(cast(store as varchar(MAX)),'')+'",'+
+	'"'+isnull(cast(Reg as varchar(MAX)),'')+'",'+
+	'"'+isnull(cast(trx as varchar(MAX)),'')+'",'+
+	'"'+isnull(cast(TrxDate as varchar(MAX)),'')+'"' AS text) as result
+from 
+	data8vscrm_view

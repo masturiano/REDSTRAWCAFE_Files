@@ -1,0 +1,3 @@
+SELECT        RECEIPT_NO
+FROM            dbo.data8vscrm_tb_crm
+GROUP BY RECEIPT_NO

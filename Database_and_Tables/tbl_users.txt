@@ -1,0 +1,141 @@
+create table data8vscrm_tbl_users__
+(
+userId int identity(1,1),
+strCode varchar(3),
+grpCode varchar(3),
+userName nvarchar(50),
+userPass nvarchar(50),
+pages text,
+userLevel int,
+dateEnt datetime,
+dateUpdt datetime,
+userStat char(1),
+fullName varchar(100),
+ipAddress varchar(50),
+log char(1)
+)
+
+select
+                a.user_id,a.store_code,a.group_code,a.user_name,
+                a.user_pass,a.user_level,a.date_enter,a.date_update,
+                case when a.user_stat = 'A' then 'Active' else 'Inactive' end as user_stat,
+                a.full_name,a.ip_address,a.log,
+                b.dept_desc,b.dept_short_desc,
+                a.oracle_user_name
+            from 
+                tbl_users a
+            left join
+                tbl_department b on b.group_code = a.group_code
+
+-----------------------------------------------------------------
+REDSTRAWCAFE
+
+----------
+TBL_USERS
+----------
+
+// SHOW TABLE STRUCTURE
+desc tbl_users
+show create table tbl_users
+
+// CREATE TABLE tbl_users
+create table tbl_users
+(
+user_id int not null auto_increment,
+group_code int,
+full_name varchar(100),
+user_name varchar(50),
+user_pass varchar(50),
+user_stat char(1),
+date_enter date,
+date_update date,
+ip_address varchar(13),
+log int(1),
+primary key(user_id)
+)
+
+
+// SELECT TABLE tbl_users
+select 
+	user_id,
+	group_code,
+	full_name,
+	user_name,
+	user_pass,
+	user_stat,
+	date_enter,
+	date_update,
+	ip_address,
+	log
+from
+	tbl_users
+
+// INSERT INTO tbl_users
+insert into tbl_users(
+group_code,full_name,user_name,user_pass,user_stat,
+date_enter,date_update,ip_address,log
+) 
+values(1,'Mydel Asturiano','masturiano','masturiano','A','2016-06-20 11:09:00',NULL,NULL,1)
+
+---------------
+TBL_USER_GROUP
+---------------
+drop table tbl_user_group
+// CREATE TABLE tbl_user_group
+create table tbl_user_group
+(
+group_code int not null,
+group_name varchar(100),
+primary key(group_code)
+)
+
+// INSERT INTO tbl_user_group
+insert into tbl_user_group
+values(1,'ADMINISTRATOR'),(2,'OWNER'),(3,'USER')
+
+
+
+// SELECT TABLE tbl_user_group
+select
+	group_code,group_name
+from 
+	tbl_user_group
+order by 
+	group_name
+
+---------------
+TBL_USER_STAT
+---------------
+
+
+// CREATE TABLE tbl_user_stat
+create table tbl_user_stat
+(
+user_stat char(1),
+user_stat_description varchar(100)
+)
+
+// INSERT INTO tbl_user_group
+insert into tbl_user_stat
+values('A','Active'),('I','Inactive')
+
+---------------
+QUERY ONLY
+---------------
+
+// SELECT TABLE tbl_users join tbl_user_group
+select 
+	a.user_id,
+	a.group_code,
+	a.full_name,
+	a.user_name,
+	a.user_stat,
+	a.date_enter,
+	a.date_update,
+	a.ip_address,
+	a.log,
+	b.group_name
+from
+	tbl_users a
+left join tbl_user_group b
+	on a.group_code = b.group_code

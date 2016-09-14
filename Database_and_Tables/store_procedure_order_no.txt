@@ -1,0 +1,13 @@
+BEGIN
+	
+	UPDATE
+		tbl_order_number
+	SET
+		last_order_no=last_order_no+1;
+
+	SELECT 
+		last_order_no
+	FROM 
+		tbl_order_number;
+
+END

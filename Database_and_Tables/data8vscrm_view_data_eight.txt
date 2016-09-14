@@ -1,0 +1,1 @@
+SELECT RECEIPT_NO,RECEIPT_NO_DATE FROM data8vscrm_tb_data_eight
